@@ -1,0 +1,684 @@
+:root {
+  --bg: #000;
+  --fg: #fff;
+  --dim: #808080;
+  --line: #fff;
+  --head: #d7afff;
+  --link: #5fd7ff;
+  --ok: #5fff87;
+  --warn: #ffd75f;
+  --danger: #ff5f5f;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, "Cascadia Mono", Consolas,
+    "Liberation Mono", "DejaVu Sans Mono", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px 64px;
+}
+
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  background: var(--link);
+  color: var(--bg);
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+/* ---------- tables ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 24px;
+}
+th,
+td {
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+th {
+  color: var(--head);
+  font-weight: bold;
+  white-space: nowrap;
+}
+tbody tr:hover td {
+  background: #0d0d0d;
+}
+th.label {
+  width: 1%;
+}
+.num {
+  text-align: right;
+  width: 1%;
+  white-space: nowrap;
+}
+.shrink {
+  width: 1%;
+  white-space: nowrap;
+}
+.top {
+  vertical-align: top;
+}
+.center {
+  text-align: center;
+}
+.nowrap {
+  white-space: nowrap;
+}
+
+/* ---------- headings ---------- */
+
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--ok);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.rule::before {
+  content: "";
+  width: 24px;
+  border-top: 1px solid var(--line);
+}
+.rule::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--line);
+}
+h1.rule {
+  color: var(--fg);
+  font-size: 16px;
+}
+
+/* ---------- nav ---------- */
+
+.nav {
+  margin-bottom: 8px;
+}
+.nav td {
+  width: 1%;
+  white-space: nowrap;
+  padding: 6px 14px;
+}
+.nav .brand a {
+  color: var(--ok);
+  font-weight: bold;
+}
+.nav .active {
+  background: var(--fg);
+}
+.nav .active a {
+  color: var(--bg);
+}
+.nav .cwd {
+  width: auto;
+  text-align: right;
+}
+
+/* ---------- text ---------- */
+
+.dim {
+  color: var(--dim);
+}
+.warn {
+  color: var(--warn);
+}
+.ok {
+  color: var(--ok);
+}
+.verb {
+  color: var(--warn);
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  margin: 2px 6px 2px 0;
+  padding: 0 6px;
+  border: 1px solid var(--fg);
+  color: var(--ok);
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.tag::before {
+  content: "#";
+  color: var(--dim);
+}
+a.tag:hover::before {
+  color: var(--bg);
+}
+a.tag:hover {
+  background: var(--ok);
+}
+.tag a {
+  color: inherit;
+}
+.tag a:hover {
+  background: var(--ok);
+  color: var(--bg);
+}
+.tag.removable {
+  padding-right: 0;
+}
+.tag form {
+  display: contents;
+}
+.tag button.tag-x {
+  margin-left: 6px;
+  padding: 0 6px;
+  border: none;
+  border-left: 1px solid var(--fg);
+  background: none;
+  color: var(--dim);
+  line-height: inherit;
+}
+.tag button.tag-x::before,
+.tag button.tag-x::after {
+  content: none;
+}
+.tag button.tag-x:hover {
+  background: var(--danger);
+  color: var(--bg);
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 4px;
+  margin-bottom: 24px;
+}
+.tags .tag {
+  margin: 0 4px 0 0;
+}
+.inline-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+.tag.action {
+  gap: 6px;
+  margin: 2px 6px 2px 0;
+}
+.tag .obj-link {
+  gap: 6px;
+  color: var(--fg);
+}
+.tag.action::before {
+  content: none;
+}
+.tag .verb {
+  color: var(--warn);
+}
+.tag.action button.tag-x {
+  margin-left: 0;
+}
+
+/* ---------- forms ---------- */
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 2px 8px;
+}
+input[type="text"],
+textarea {
+  width: 100%;
+}
+textarea {
+  resize: vertical;
+  min-height: 3em;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible {
+  outline: 1px solid var(--ok);
+  outline-offset: 1px;
+}
+button {
+  cursor: pointer;
+  white-space: nowrap;
+}
+button::before {
+  content: "[ ";
+  color: var(--dim);
+}
+button::after {
+  content: " ]";
+  color: var(--dim);
+}
+button:hover:not(:disabled) {
+  background: var(--fg);
+  color: var(--bg);
+}
+button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+button.primary {
+  color: var(--ok);
+  border-color: var(--ok);
+}
+button.primary:hover:not(:disabled) {
+  background: var(--ok);
+  color: var(--bg);
+}
+button.danger {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+button.danger:hover:not(:disabled) {
+  background: var(--danger);
+  color: var(--bg);
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.row input[type="text"] {
+  flex: 1;
+  width: auto;
+  min-width: 10ch;
+}
+.checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+.checks label {
+  cursor: pointer;
+  white-space: nowrap;
+}
+input[type="checkbox"] {
+  accent-color: var(--ok);
+}
+
+/* ---------- icons ---------- */
+
+.pixel-icon {
+  display: block;
+  image-rendering: pixelated;
+}
+.icon-cell {
+  width: 1%;
+  padding: 10px;
+  vertical-align: top;
+  background-image: linear-gradient(45deg, #111 25%, transparent 25%),
+    linear-gradient(-45deg, #111 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #111 75%),
+    linear-gradient(-45deg, transparent 75%, #111 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+.obj-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- icon editor ---------- */
+
+.editor td {
+  border-color: var(--line);
+}
+.pixel-grid {
+  display: grid;
+  width: 289px;
+  height: 289px;
+  gap: 1px;
+  background: #262626;
+  border: 1px solid #262626;
+  touch-action: none;
+  user-select: none;
+  cursor: crosshair;
+}
+.pixel {
+  background: var(--bg);
+}
+.palette {
+  display: grid;
+  grid-template-columns: repeat(8, 28px);
+  gap: 4px;
+  margin-top: 4px;
+}
+.swatch {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #444;
+}
+.swatch::before,
+.swatch::after {
+  content: none;
+}
+.swatch.eraser {
+  color: var(--dim);
+}
+.swatch.selected {
+  outline: 2px solid var(--fg);
+  outline-offset: 1px;
+}
+.preview-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+details > summary {
+  cursor: pointer;
+  color: var(--link);
+  margin-bottom: 8px;
+}
+
+select {
+  appearance: none;
+  padding-right: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h8L4 5z' fill='%23fff'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  cursor: pointer;
+}
+select:invalid {
+  color: var(--dim);
+}
+option {
+  color: var(--fg);
+}
+
+/* ---------- typeahead ---------- */
+
+.typeahead {
+  position: relative;
+}
+.typeahead input {
+  width: 24ch;
+}
+.suggestions {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  z-index: 10;
+  min-width: 100%;
+  max-width: 60ch;
+  max-height: 16em;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--bg);
+  border: 1px solid var(--fg);
+}
+.suggestions li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.suggestions li + li {
+  border-top: 1px solid #333;
+}
+.suggestions li.active {
+  background: var(--fg);
+}
+.suggestions li.active span {
+  color: var(--bg);
+}
+
+.spaced {
+  display: inline-block;
+  margin-right: 14px;
+}
+.tag .label-ref {
+  color: var(--ok);
+}
+
+/* ---------- number line ---------- */
+
+.numline-cell {
+  width: 100%;
+  min-width: 280px;
+  padding: 6px 28px 2px;
+}
+.numline {
+  position: relative;
+  height: 34px;
+}
+.numline .axis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 11px;
+  border-top: 1px solid var(--dim);
+}
+.numline .tick {
+  position: absolute;
+  top: 11px;
+  height: 5px;
+  border-left: 1px solid var(--dim);
+}
+.numline .tick span {
+  position: absolute;
+  top: 6px;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--dim);
+  white-space: nowrap;
+}
+.numline .range {
+  position: absolute;
+  top: 7px;
+  height: 9px;
+  background: #ffd700;
+}
+.numline .median {
+  position: absolute;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  margin-left: -5.5px;
+  background: var(--fg);
+  border: 2px solid var(--bg);
+  transform: rotate(45deg);
+}
+.num-input {
+  width: 9ch;
+  text-align: right;
+}
+.label-from {
+  font-size: 12px;
+}
+.tag.attr {
+  gap: 8px;
+  color: var(--fg);
+}
+.tag.attr::before {
+  content: none;
+}
+.tag.attr button.tag-x {
+  margin-left: 0;
+}
+
+/* ---------- actions ---------- */
+
+.action-editor .tags {
+  margin-bottom: 0;
+}
+.hint {
+  font-size: 12px;
+  margin-top: 4px;
+}
+.connector {
+  display: inline-block;
+  min-width: 3ch;
+  color: var(--head);
+  font-weight: bold;
+}
+.op {
+  color: var(--warn);
+}
+.clause-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.clause-row form {
+  display: contents;
+}
+button.tag-x.plain {
+  padding: 0 6px;
+  border: none;
+  background: none;
+  color: var(--dim);
+}
+button.tag-x.plain::before,
+button.tag-x.plain::after {
+  content: none;
+}
+button.tag-x.plain:hover {
+  background: var(--danger);
+  color: var(--bg);
+}
+.condition-input {
+  margin: 6px 0 0;
+}
+/* Merge two adjacent cells: no divider, an arrow instead. */
+th.join-next,
+td.join-next {
+  border-right-style: hidden;
+}
+td.joined {
+  padding-left: 0;
+}
+.join-arrow {
+  margin-right: 10px;
+  color: var(--dim);
+}
+.new-action {
+  margin-bottom: 24px;
+}
+.new-action input[type="text"] {
+  flex: 0 1 auto;
+}
+.new-action input[name="description"] {
+  flex: 1;
+}
+.attr-table td {
+  padding: 4px 8px;
+}
+.attr-table form {
+  display: contents;
+}
+.attr-table .row {
+  flex-wrap: nowrap;
+}
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ---------- save feedback ---------- */
+
+button.saving {
+  opacity: 0.5;
+  cursor: progress;
+}
+button.saved {
+  animation: saved-glow 1.2s ease-out;
+}
+@keyframes saved-glow {
+  0% {
+    border-color: var(--ok);
+    color: var(--ok);
+    box-shadow: 0 0 0 1px var(--ok), 0 0 10px rgba(95, 255, 135, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 1px transparent, 0 0 10px transparent;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  button.saved {
+    animation-duration: 0.01s;
+  }
+}
+
+/* ---------- inline confirmation ---------- */
+
+button.armed,
+button.armed:hover:not(:disabled),
+.tag button.tag-x.armed,
+button.tag-x.plain.armed {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: var(--bg);
+}
+button.armed::before,
+button.armed::after {
+  color: var(--bg);
+}
+.tag button.tag-x.armed {
+  padding: 0 8px;
+}
+.confirm-message {
+  margin-left: 10px;
+  color: var(--danger);
+  font-size: 12px;
+}
+
+/* Object, label and attribute names are stored lowercase; show them that way while typing. */
+input.lowercase {
+  text-transform: lowercase;
+}
